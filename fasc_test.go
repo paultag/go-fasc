@@ -21,7 +21,6 @@
 package fasc_test
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"testing"
