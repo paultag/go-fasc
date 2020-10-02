@@ -20,27 +20,61 @@
 
 package fasc // import "pault.ag/go/fasc"
 
-//
+// OrganizationalCategory is the cateogry of organization referenced, such
+// as the Federal Government, State Government, or a Company.
 type OrganizationalCategory int
 
-//
+// AssociationCategory is the type of relationship between the individual and
+// the Organization. This is something like "employee", or "contractor".
 type AssociationCategory int
 
 const (
-	OrganizationalCategoryFederalGoverment     OrganizationalCategory = 1
-	OrganizationalCategoryStateGovernment      OrganizationalCategory = 2
-	OrganizationalCategoryCommercialEnterprise OrganizationalCategory = 3
-	OrganizationalCategoryForeignGovernment    OrganizationalCategory = 4
+	// OrganizationalCategoryFederalGoverment indicates the organization
+	// is a part of the federal government.
+	OrganizationalCategoryFederalGoverment OrganizationalCategory = 1
 
-	AssociationCategoryEmployee          AssociationCategory = 1
-	AssociationCategoryCivil             AssociationCategory = 2
-	AssociationCategoryExecutiveStaff    AssociationCategory = 3
+	// OrganizationalCategoryStateGovernment indicates the organization
+	// is a part of a state government.
+	OrganizationalCategoryStateGovernment OrganizationalCategory = 2
+
+	// OrganizationalCategoryCommercialEnterprise indicates the organization
+	// is a company, or other commercial enterprise.
+	OrganizationalCategoryCommercialEnterprise OrganizationalCategory = 3
+
+	// OrganizationalCategoryForeignGovernment indicates the organization
+	// is a foreign government.
+	OrganizationalCategoryForeignGovernment OrganizationalCategory = 4
+
+	// AssociationCategoryEmployee indicates the individual is an employee
+	// of the organization in question.
+	AssociationCategoryEmployee AssociationCategory = 1
+
+	// AssociationCategoryCivil indidicates the individual is a civilian
+	// employee of a branch of the military.
+	AssociationCategoryCivil AssociationCategory = 2
+
+	// AssociationCategoryExecutiveStaff indidicates the individual is a
+	// member of the executive staff.
+	AssociationCategoryExecutiveStaff AssociationCategory = 3
+
+	// AssociationCategoryUniformedServivce indidicates the individual is a
+	// member of the uniformed service of a branch of the military.
 	AssociationCategoryUniformedServivce AssociationCategory = 4
-	AssociationCategoryContractor        AssociationCategory = 5
-	AssociationCategoryAffiliate         AssociationCategory = 6
-	AssociationCategoryBeneficiary       AssociationCategory = 7
+
+	// AssociationCategoryContractor indidicates the individual is acting
+	// as a contractor for the organization.
+	AssociationCategoryContractor AssociationCategory = 5
+
+	// AssociationCategoryAffiliate indidicates the individual was issued
+	// a credential on the basis of being affiliated with the organization.
+	AssociationCategoryAffiliate AssociationCategory = 6
+
+	// AssociationCategoryBeneficiary indidicates the individual is a
+	// beneficiary of the organization.
+	AssociationCategoryBeneficiary AssociationCategory = 7
 )
 
+// String will return a human readable string version of the OrganizationalCategory.
 func (oc OrganizationalCategory) String() string {
 	switch oc {
 	case OrganizationalCategoryFederalGoverment:
@@ -55,6 +89,7 @@ func (oc OrganizationalCategory) String() string {
 	return "unknown"
 }
 
+// String will return a human readable string version of the AssociationCategory.
 func (ac AssociationCategory) String() string {
 	switch ac {
 	case AssociationCategoryEmployee:

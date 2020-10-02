@@ -20,7 +20,7 @@
 
 package bdc
 
-// Interpret the input bytes as a BDC 4-bit number stream.
+// Parse will interpret the input bytes as a BDC 4-bit number stream.
 func Parse(bytes []byte) ([]int, error) {
 	bv, err := NewBitSliceFromBytes(bytes)
 	if err != nil {

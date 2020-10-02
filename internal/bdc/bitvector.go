@@ -20,7 +20,7 @@
 
 package bdc
 
-// A bitslice is an array of bits. This allows us to slice and re-interpret
+// BitSlice is an array of bits. This allows us to slice and re-interpret
 // the bits, regardless of how they got to us.
 //
 // For AIS, we get data in 6-bit bytes, but we need to slice them up without
@@ -32,7 +32,7 @@ type BitSlice struct {
 	bits []bool
 }
 
-// Get the number of bits in this bit vector.
+// Length will return the number of bits in this bit vector.
 func (bv *BitSlice) Length() int {
 	return len(bv.bits)
 }
@@ -54,7 +54,8 @@ func (bv *BitSlice) Slice(from, length uint) *BitSlice {
 	}
 }
 
-// Read the bit slice as a uint. This assumes the Nth index is the MSB.
+// BigEndianUint will Read the bit slice as a uint. This assumes the Nth index
+// is the MSB.
 func (bv *BitSlice) BigEndianUint() uint {
 	ret := uint(0)
 	for i := range bv.bits {
@@ -65,26 +66,27 @@ func (bv *BitSlice) BigEndianUint() uint {
 	return ret
 }
 
-// Append a byte to the list, MSB first.
+// AppendByte will append a byte to the list, MSB first.
 func (bv *BitSlice) AppendByte(b byte, length uint) {
 	for i := int(length - 1); i >= 0; i-- {
 		bv.Append((b & (0x01 << uint(i))) != 0)
 	}
 }
 
-// Append a slice of bytes.
+// AppendBytes will append a slice of bytes.
 func (bv *BitSlice) AppendBytes(data []byte, length uint) {
 	for _, el := range data {
 		bv.AppendByte(el, length)
 	}
 }
 
-// Allocate a new BitSlice.
+// NewBitSlice will allocate a new BitSlice.
 func NewBitSlice() BitSlice {
 	return BitSlice{bits: []bool{}}
 }
 
-//
+// NewBitSliceFromBytes will allocate a new BitSlice, and fill it with
+// the bytes provided.
 func NewBitSliceFromBytes(data []byte) (*BitSlice, error) {
 	b := NewBitSlice()
 	for _, el := range data {

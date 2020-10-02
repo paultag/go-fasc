@@ -24,8 +24,12 @@ import (
 	"fmt"
 )
 
+// AgencyCode is an enumeration of US Government Agencies, contained
+// within FIPS 95.
 type AgencyCode int
 
+// String will return the human readable name for the agency of the
+// government.
 func (o AgencyCode) String() string {
 	v, ok := FIPS95_2AgencyCodes[int(o)]
 	if !ok {
@@ -35,6 +39,8 @@ func (o AgencyCode) String() string {
 }
 
 var (
+	// FIPS95_2AgencyCodes contains an enumeration of all understood
+	// FIPS95 agency codes.
 	FIPS95_2AgencyCodes = map[int]string{
 		0300: "LIBRARY OF CONGRESS",
 		0500: "GOVERNMENT ACCOUNTABILITY OFFICE",

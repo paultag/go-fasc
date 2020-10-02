@@ -98,6 +98,9 @@ func rehydrateNumber(in []int) int {
 	return ret
 }
 
+// FASC -- or Federal Agency Smart Credential, contains information regarding
+// the organization that has issued the credential, the individual who holds
+// the credential, and relationship betwen them.
 type FASC struct {
 	// Agency Code identifies what Government agnecy issued the credential.
 	// This is usually a FIPS 95-2 federal agency code. An incomplete table
@@ -167,6 +170,8 @@ type FASC struct {
 	PersonAssociation AssociationCategory
 }
 
+// String will return a human readable debug string containing the core information
+// contained in the FASC data structure.
 func (f FASC) String() string {
 	return fmt.Sprintf(
 		"agency=%s system=%d credential=%d credentialSeries=%d ics=%d pi=%d oc=%s oi=%s assoc=%s",
